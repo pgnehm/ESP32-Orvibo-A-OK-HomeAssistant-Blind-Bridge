@@ -1,0 +1,35 @@
+{
+  "name": "SmartRC-CC1101-Driver-Lib",
+  "version": "3.0.2",
+  "description": "Advanced, object-oriented Arduino library for the CC1101 Transceiver Module. Features direct register manipulation and exact mathematical calculations.",
+  "keywords": [
+    "cc1101",
+    "rf",
+    "433mhz",
+    "868mhz",
+    "315mhz",
+    "smartrc",
+    "transceiver",
+    "radio",
+    "spi"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lsatan/SmartRC-CC1101-Driver-Lib.git"
+  },
+  "authors": [
+    {
+      "name": "Little Satan (SmartRC)"
+    },
+    {
+      "name": "Wilson Shen",
+      "maintainer": false
+    }
+  ],
+  "frameworks": "arduino",
+  "platforms": [
+    "atmelavr",
+    "espressif8266",
+    "espressif32"
+  ]
+}
