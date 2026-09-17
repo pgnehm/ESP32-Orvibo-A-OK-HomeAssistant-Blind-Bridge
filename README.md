@@ -5,6 +5,7 @@ ESP32 + CC1101 firmware for controlling A-OK 433 MHz tubular blind motors from H
 This project was built for an installation that originally used an ORVIBO Allone Pro controller and the ORVIBO Home app. The observed ORVIBO controller is an Allone Pro multifunction smart host, model `VS20RB-1GO`, and the blind motor identified during the project is an A-OK multi-point tubular motor, model `AM35-6/28-MEL-ZG`.
 
 Instead of depending on the ORVIBO cloud or app, the ESP32 transmits the same style of RF commands that the physical A-OK remotes send. Home Assistant controls the ESP32 through MQTT discovery and sees each blind as a normal `cover` entity.
+<img width="635" height="665" alt="Screenshot 2026-09-17 095729" src="https://github.com/user-attachments/assets/1377069f-8354-4b25-8516-4c9622689131" />
 
 ## What It Can Do
 
@@ -22,6 +23,11 @@ Instead of depending on the ORVIBO cloud or app, the ESP32 transmits the same st
 - Publish diagnostics to Home Assistant, including IP, uptime, RSSI, heap, firmware version, LED status, and log state.
 - Show firmware state on the onboard RGB LED.
 - Allow firmware upload over WiFi after the first USB flash.
+
+## Web Interface
+
+<img width="371" height="703" alt="Screenshot 2026-09-17 095701" src="https://github.com/user-attachments/assets/f21df13f-c553-4359-b853-53ac8e107e3e" />
+
 
 ## Important Limitations
 
@@ -47,6 +53,9 @@ Optional:
 - External WiFi antenna for the ESP32-S3 board if the board is configured for external antenna use.
 
 Do not power the CC1101 from 5V. Use 3.3V only.
+
+<img width="272" height="469" alt="image" src="https://github.com/user-attachments/assets/0f961f73-2cd1-421b-8598-9404b29c3e7e" />
+
 
 ## Wiring
 
