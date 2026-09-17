@@ -81,6 +81,11 @@ All diagnostics use the same bridge availability topic.
 | Sensor | IP Address | `orvibo_esp32_blinds_ip_address` | `orvibo_esp32_blinds/diagnostics/ip_address` | IP string |
 | Sensor | Free Heap | `orvibo_esp32_blinds_free_heap` | `orvibo_esp32_blinds/diagnostics/free_heap` | bytes |
 | Sensor | Firmware Version | `orvibo_esp32_blinds_firmware_version` | `orvibo_esp32_blinds/diagnostics/firmware_version` | version string |
+| Sensor | LED Status | `orvibo_esp32_blinds_led_status` | `orvibo_esp32_blinds/diagnostics/led_status` | status string |
+| Sensor | Debug URL | `orvibo_esp32_blinds_debug_url` | `orvibo_esp32_blinds/diagnostics/debug_url` | HTTP URL |
+| Sensor | Last Log | `orvibo_esp32_blinds_last_log` | `orvibo_esp32_blinds/diagnostics/last_log` | latest bounded log line |
+| Sensor | Log Sequence | `orvibo_esp32_blinds_log_sequence` | `orvibo_esp32_blinds/diagnostics/log_sequence` | counter |
+| Sensor | Dropped Logs | `orvibo_esp32_blinds_log_dropped` | `orvibo_esp32_blinds/diagnostics/log_dropped` | counter |
 | Binary sensor | CC1101 Radio | `orvibo_esp32_blinds_radio_ready` | `orvibo_esp32_blinds/diagnostics/radio_ready` | `ready` or `missing` |
 
 ## Position behavior
@@ -94,3 +99,18 @@ Important behavior:
 - Intermediate positions also require a configured stop RF command.
 - After firmware reboot, send `SYNC_OPEN` or `SYNC_CLOSE` if the blind is already at a known endpoint and you do not want to transmit RF.
 
+## Local HTTP debug surface
+
+The bridge also runs a local HTTP debug server after WiFi connects. It works independently of MQTT.
+
+| Endpoint | Purpose |
+| --- | --- |
+| `/` | Status page, LED legend, RF capture form, recent logs, and reboot button |
+| `/status` | JSON status, including `time`, `time_synced`, WiFi, MQTT, radio, LED, logs, and blinds |
+| `/logs` | Plain text bounded log with local date/time after NTP sync |
+| `/logs.json` | JSON bounded log entries |
+| `/capture` | Browser RF capture page |
+| `/capture.raw` | Last RF capture as raw pulse text |
+| `/capture.json` | Last RF capture as JSON |
+| `/reboot` | Reboot confirmation page |
+| `POST /update` | Hidden HTTP firmware upload endpoint |

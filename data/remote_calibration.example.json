@@ -1,0 +1,18 @@
+{
+  "protocol": "aok_zemismart_pwm",
+  "prefix": "0xA1B2C3",
+  "remote_id": "0x42",
+  "bases": {
+    "open": "0xF42A",
+    "close": "0xBCF2",
+    "stop": "0xDC12"
+  },
+  "timings": {
+    "short": 263,
+    "long": 582,
+    "sync_high": 4960,
+    "sync_low": 670,
+    "gap": 9790,
+    "repeats": 8
+  }
+}

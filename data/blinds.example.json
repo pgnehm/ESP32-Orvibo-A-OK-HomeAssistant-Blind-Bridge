@@ -1,0 +1,34 @@
+[
+  {
+    "id": "living_room_curtain",
+    "name": "Living Room Curtain",
+    "channels": [1],
+    "full_travel_ms": 30000,
+    "initial_position": -1,
+    "invert_position": false
+  },
+  {
+    "id": "guest_blackout",
+    "name": "Guest Bedroom Blackout",
+    "channels": [2],
+    "full_travel_ms": 30000,
+    "initial_position": -1,
+    "invert_position": false
+  },
+  {
+    "id": "guest_roller",
+    "name": "Guest Bedroom Roller Blind",
+    "channels": [3],
+    "full_travel_ms": 30000,
+    "initial_position": -1,
+    "invert_position": false
+  },
+  {
+    "id": "all_blinds",
+    "name": "All AOK Blinds",
+    "channels": [1, 2, 3],
+    "full_travel_ms": 30000,
+    "initial_position": -1,
+    "invert_position": false
+  }
+]

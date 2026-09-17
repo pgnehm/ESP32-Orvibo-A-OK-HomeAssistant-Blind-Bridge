@@ -3,7 +3,11 @@
 #include "blind_types.h"
 
 // Raw pulse trains start HIGH and alternate HIGH/LOW for each duration.
-// Replace nullptr/0 entries with captured pulse arrays once RF learning is done.
+// For AOK blinds, prefer generating include/blinds.local.h with:
+//
+// python .\tools\generate_blinds_local.py --remote .\data\remote_calibration.json --blinds .\data\blinds.json --out .\include\blinds.local.h
+//
+// Keep this file as a compile-safe fallback and example.
 //
 // Example shape:
 // static const uint16_t living_open_pulses[] = { 320, 960, 320, 960 };
@@ -23,4 +27,3 @@ static const BlindDefinition BLINDS[] = {
 };
 
 static constexpr size_t BLIND_COUNT = sizeof(BLINDS) / sizeof(BLINDS[0]);
-
