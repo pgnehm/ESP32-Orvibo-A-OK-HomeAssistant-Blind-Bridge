@@ -12,7 +12,7 @@
 
 #define DEVICE_ID "orvibo_esp32_blinds"
 #define DEVICE_NAME "Orvibo ESP32 Blind Bridge"
-#define FIRMWARE_VERSION "0.2.10"
+#define FIRMWARE_VERSION "0.2.11"
 #define MQTT_BASE_TOPIC "orvibo_esp32_blinds"
 #define MQTT_DISCOVERY_PREFIX "homeassistant"
 #define MQTT_RETAIN true

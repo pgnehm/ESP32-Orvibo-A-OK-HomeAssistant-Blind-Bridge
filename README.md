@@ -337,6 +337,12 @@ The bridge uses MQTT discovery. For each blind, Home Assistant gets a `cover` en
 - Stop
 - Set position
 
+Open, Close, and Stop remain available at all times while the bridge is online. The
+motor does not report its physical position, so MQTT discovery marks each cover as
+an assumed-state entity. Home Assistant still displays the bridge's timing-based
+position estimate, but an incorrect estimate at `0` or `100` cannot disable a
+needed command.
+
 Default base topic:
 
 ```text
@@ -376,6 +382,7 @@ The firmware estimates position by time:
 
 - `0` means closed.
 - `100` means open.
+- The estimate never disables the Open, Close, or Stop controls in Home Assistant.
 - Full open and full close can be sent even if current position is unknown.
 - Intermediate moves require a known position and a configured stop command.
 - After reboot, the position starts unknown unless `initial_position` is configured.

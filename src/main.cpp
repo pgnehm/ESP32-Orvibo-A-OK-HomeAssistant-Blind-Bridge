@@ -1744,7 +1744,9 @@ void publishDiscovery(const BlindDefinition& blind) {
   payload += "\"payload_available\":\"online\",";
   payload += "\"payload_not_available\":\"offline\",";
   payload += "\"device_class\":\"shade\",";
-  payload += "\"optimistic\":false,";
+  // The motors provide no position feedback. Mark the entity as assumed-state so
+  // Home Assistant never disables Open or Close based on our timing estimate.
+  payload += "\"optimistic\":true,";
   payload += "\"retain\":false,";
   payload += bridgeDeviceJson();
   payload += "}";

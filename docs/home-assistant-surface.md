@@ -48,6 +48,12 @@ Cover features:
 - Stop
 - Set position
 
+The discovery payload sets `optimistic: true`, which makes Home Assistant expose
+the cover as `assumed_state: true`. This is intentional: the motors do not send
+position feedback, so Open, Close, and Stop must remain available even when the
+timing estimate says the blind is fully open or fully closed. State and position
+topics are still published for motion display, diagnostics, and automations.
+
 Cover attributes:
 
 | Attribute | Meaning |
@@ -94,6 +100,7 @@ The bridge does not receive physical position feedback from the blind motor. It 
 
 Important behavior:
 
+- Open, Close, and Stop remain available regardless of the estimated position.
 - Full open and full close can be sent even when position is unknown.
 - Intermediate positions require a known current position.
 - Intermediate positions also require a configured stop RF command.
