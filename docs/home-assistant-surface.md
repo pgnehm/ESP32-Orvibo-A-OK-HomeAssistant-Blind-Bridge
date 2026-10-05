@@ -76,6 +76,11 @@ Cover attributes:
 | `failed_command_count` | Number of failed or ignored commands for this blind. |
 | `last_command_ms` | `millis()` timestamp of the last command, or `null`. |
 
+Removed covers can be cleaned out of Home Assistant by defining
+`MQTT_RETIRED_COVER_IDS` in `include/config.local.h`. The bridge publishes an empty
+retained discovery payload for each listed ID on MQTT connection, then clears the
+old retained state and command topics.
+
 ## Bridge diagnostic entities
 
 All diagnostics use the same bridge availability topic.

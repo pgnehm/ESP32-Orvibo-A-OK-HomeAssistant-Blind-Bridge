@@ -42,6 +42,11 @@
 
 namespace {
 
+#ifdef MQTT_RETIRED_COVER_IDS
+const char* const RETIRED_COVER_IDS[] = {MQTT_RETIRED_COVER_IDS};
+constexpr size_t RETIRED_COVER_COUNT = sizeof(RETIRED_COVER_IDS) / sizeof(RETIRED_COVER_IDS[0]);
+#endif
+
 constexpr size_t REMOTE_LOG_BUFFER_SIZE = 40;
 constexpr size_t REMOTE_LOG_MESSAGE_MAX = 220;
 constexpr size_t RF_CAPTURE_MAX_PULSES = 2000;
@@ -225,6 +230,10 @@ String blindTopic(const BlindDefinition& blind, const char* suffix) {
 
 String discoveryTopic(const BlindDefinition& blind) {
   return String(MQTT_DISCOVERY_PREFIX) + "/cover/" + DEVICE_ID + "/" + blind.id + "/config";
+}
+
+String coverDiscoveryTopic(const char* blindId) {
+  return String(MQTT_DISCOVERY_PREFIX) + "/cover/" + DEVICE_ID + "/" + blindId + "/config";
 }
 
 String entityDiscoveryTopic(const char* platform, const char* objectId) {
@@ -1930,6 +1939,21 @@ void publishAllDiscovery() {
   }
 }
 
+void removeRetiredCoverDiscovery() {
+#ifdef MQTT_RETIRED_COVER_IDS
+  for (size_t index = 0; index < RETIRED_COVER_COUNT; ++index) {
+    const char* blindId = RETIRED_COVER_IDS[index];
+    mqtt.publish(coverDiscoveryTopic(blindId).c_str(), "", true);
+
+    const String baseTopic = String(MQTT_BASE_TOPIC) + "/" + blindId + "/";
+    for (const char* suffix : {"state", "position", "attributes", "set", "set_position"}) {
+      mqtt.publish((baseTopic + suffix).c_str(), "", true);
+    }
+    remoteLog("info", String("Removed retired Home Assistant cover id=") + blindId);
+  }
+#endif
+}
+
 void subscribeBlindTopics() {
   for (size_t index = 0; index < BLIND_COUNT; ++index) {
     const BlindDefinition& blind = *blindStates[index].definition;
@@ -2014,6 +2038,7 @@ bool connectMqtt() {
   }
 
   mqtt.publish(availability.c_str(), "online", true);
+  removeRetiredCoverDiscovery();
   publishAllDiscovery();
   publishPendingRemoteLogsToMqtt();
   clearRetainedBlindCommands();

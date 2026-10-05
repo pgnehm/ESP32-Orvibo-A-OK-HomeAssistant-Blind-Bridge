@@ -12,10 +12,14 @@
 
 #define DEVICE_ID "orvibo_esp32_blinds"
 #define DEVICE_NAME "Orvibo ESP32 Blind Bridge"
-#define FIRMWARE_VERSION "0.2.11"
+#define FIRMWARE_VERSION "0.2.13"
 #define MQTT_BASE_TOPIC "orvibo_esp32_blinds"
 #define MQTT_DISCOVERY_PREFIX "homeassistant"
 #define MQTT_RETAIN true
+
+// Optional: remove retained Home Assistant discovery records for deleted blind IDs.
+// Keep the IDs listed through at least one successful MQTT connection.
+// #define MQTT_RETIRED_COVER_IDS "old_blind_id", "another_old_blind_id"
 
 // ArduinoOTA WiFi firmware upload. Empty password means LAN-only but unauthenticated.
 #define OTA_PASSWORD ""

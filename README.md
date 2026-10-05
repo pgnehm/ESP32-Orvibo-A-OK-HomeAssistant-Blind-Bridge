@@ -365,6 +365,11 @@ MQTT discovery topic:
 homeassistant/cover/orvibo_esp32_blinds/<blind_id>/config
 ```
 
+When a blind is removed from a deployed configuration, add its old ID to
+`MQTT_RETIRED_COVER_IDS` in `include/config.local.h`. On the next successful MQTT
+connection, the bridge clears that retained discovery record and its retained state
+topics so Home Assistant removes the obsolete entity automatically.
+
 Bridge availability topic:
 
 ```text
